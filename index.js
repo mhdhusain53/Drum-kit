@@ -1,6 +1,7 @@
 for (var i = 0; i < 7; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function() {
     var variable = this.innerHTML;
+    animation(this.innerHTML);
     switch (variable) {
       case "a":
         var tom1 = new Audio("tom-1.mp3");
@@ -33,6 +34,7 @@ for (var i = 0; i < 7; i++) {
         break;
       case "l":
         var kick = new Audio("kick-bass.mp3");
+        
         kick.play();
         break;
 
@@ -47,6 +49,7 @@ for (var i = 0; i < 7; i++) {
 
 
 document.addEventListener("keypress",function(event){
+  animation(event.key);
   switch (event.key) {
     case "a":
       var tom1 = new Audio("tom-1.mp3");
@@ -87,3 +90,14 @@ document.addEventListener("keypress",function(event){
   }
 
 });
+
+
+
+
+function animation ( activeKey ) {
+  var activeButton = document.querySelector("." + activeKey);
+  activeButton.classList.add("pressed");
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  }, 100)
+}
